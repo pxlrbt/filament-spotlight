@@ -16,7 +16,7 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
         'spotlight' => __DIR__ . '/../resources/dist/css/spotlight.css',
     ];
 
-    protected array $scripts = [
+    protected array $beforeCoreScripts = [
         'spotlight' => __DIR__ . '/../resources/dist/js/spotlight.js',
     ];
 

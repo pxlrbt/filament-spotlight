@@ -84,6 +84,6 @@ class FilamentSpotlightMiddleware
 
     protected function injectLivewireComponent()
     {
-        app('view')->startPush('scripts', Blade::render("@livewire('livewire-ui-spotlight')"));
+        app('view')->startPush('beforeCoreScripts', Blade::render("@livewire('livewire-ui-spotlight')"));
     }
 }
