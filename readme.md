@@ -16,9 +16,7 @@ Currently supports all pages and resource pages without parameters.
 https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-98ba-6164e5205509.mp4
 
 
-## Installation
-
-Install via Composer. This will download the package and .
+## Installation via Composer
 
 **Requires PHP > 8.0 and Filament > 2.0**
 

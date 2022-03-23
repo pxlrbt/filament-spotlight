@@ -14,5 +14,8 @@
         "laravel-mix": "^6.0.6",
         "postcss": "^8.2.1",
         "tailwindcss": "^3.0.23"
+    },
+    "dependencies": {
+        "fuse.js": "^6.5.3"
     }
 }
