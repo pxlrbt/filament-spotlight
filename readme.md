@@ -1,4 +1,4 @@
-![header](https://banners.beyondco.de/Filament%20Spotlight.png?theme=light&packageManager=composer+require&packageName=pxlrbt%2Ffilament-spotlight&pattern=plus&style=style_2&description=Quickly+navigate+your+Filament+Resources&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
+![header](./.github/resources/header.png)
 
 # Filament Spotlight
 
