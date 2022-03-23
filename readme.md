@@ -1,3 +1,5 @@
+![header](https://banners.beyondco.de/Filament%20Spotlight.png?theme=light&packageManager=composer+require&packageName=pxlrbt%2Ffilament-spotlight&pattern=plus&style=style_2&description=Quickly+navigate+your+Filament+Resources&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
+
 # Filament Spotlight
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pxlrbt/filament-spotlight.svg?include_prereleases)](https://packagist.org/packages/pxlrbt/filament-spotlight)
@@ -5,11 +7,16 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pxlrbt/filament-spotlight/Code%20Style?label=code%20style)
 [![Total Downloads](https://img.shields.io/packagist/dt/pxlrbt/filament-spotlight.svg)](https://packagist.org/packages/pxlrbt/filament-spotlight)
 
-Spotlight functionality for your Pages and Resource Pages.
+
+Quickly navigate your Filament Resources with Spotlight functionality.
+
+Currently supports all pages and resource pages without parameters.
+
+[![Watch the video](./.github/resources/preview.png)](./.github/resources/demo.mp4)
 
 ## Installation
 
-Install via Composer. This will download the package and [Wire Elements Spotlight](https://github.com/wire-elements/spotlight).
+Install via Composer. This will download the package and .
 
 **Requires PHP > 8.0 and Filament > 2.0**
 
@@ -18,12 +25,7 @@ composer require pxlrbt/filament-spotlight
 ```
 
 ## Usage
-There is no configuration needed. Just install the package.
-
-## Todos
-- [ ] PR: Page::getTitle() as public
-- [ ] Add styles
-- [ ] Inject scripts
+There is no configuration needed. It just works.
 
 ## Contributing
 
@@ -51,4 +53,6 @@ Install the packages in your app's `composer.json`:
 Now, run `composer update`.
 
 ## Credits
-Dennis Koch
+- [Dennis Koch](https://github.com/pxlrbt)
+- [All Contributors](../../contributors)
+- [Wire Elements Spotlight](https://github.com/wire-elements/spotlight)

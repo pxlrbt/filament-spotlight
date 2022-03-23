@@ -3,21 +3,25 @@
 namespace pxlrbt\FilamentSpotlight;
 
 use Filament\Facades\Filament;
+use Filament\PluginServiceProvider;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentSpotlightServiceProvider extends PackageServiceProvider
+class FilamentSpotlightServiceProvider extends PluginServiceProvider
 {
+    protected array $styles = [
+        'spotlight' => __DIR__ . '/../resources/dist/css/spotlight.css',
+    ];
+
     public function configurePackage(Package $package): void
     {
         $package->name('filament-spotlight');
 
-        // Config::set('livewire-ui-spotlight.include_css', true);
         Config::set('livewire-ui-spotlight.commands', []);
+        Config::push('filament.middleware.base', InjectSpotlightMiddleware::class);
     }
 
     public function packageBooted(): void
@@ -41,8 +45,7 @@ class FilamentSpotlightServiceProvider extends PackageServiceProvider
             public function __construct(
                 protected $page,
             ) {
-                $this->name = $page;
-                // $this->name = $page::getTitle();
+                $this->name = invade(new $page())->getTitle();
             }
 
             public function getId(): string
@@ -102,7 +105,6 @@ class FilamentSpotlightServiceProvider extends PackageServiceProvider
             $pages = $resource::getPages();
 
             foreach ($pages as $key => $page) {
-                // dd($page, $resource::getUrl($key));
                 if (Str::contains($page['route'], '{')) {
                     continue;
                 }
