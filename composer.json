@@ -1,0 +1,47 @@
+{
+    "name": "pxlrbt/filament-spotlight",
+    "description": "Spotlight for your Filament Admin",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "spotlight",
+        "alfred",
+        "wire-elements",
+        "filament",
+        "laravel-filament"
+    ],
+    "authors": [
+        {
+            "name": "Dennis Koch",
+            "email": "info@pixelarbeit.de"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "filament/filament": "^2.0",
+        "wire-elements/spotlight": "^1.0",
+        "spatie/laravel-package-tools": "^1.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "pxlrbt\\FilamentSpotlight\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "pxlrbt\\FilamentSpotlight\\FilamentSpotlightServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.6"
+    },
+    "scripts": {
+        "cs-fixer": "vendor/bin/php-cs-fixer fix --diff",
+        "style": [
+            "@cs-fixer",
+            "@phpstan"
+        ]
+    }
+}
