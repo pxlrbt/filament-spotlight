@@ -18,7 +18,7 @@ https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-
 
 ## Installation via Composer
 
-**Requires PHP > 8.0 and Filament > 2.0**
+**Requires PHP > 8.0 and Filament > 2.10.34**
 
 ```bash
 composer require pxlrbt/filament-spotlight
