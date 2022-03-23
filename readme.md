@@ -1,5 +1,6 @@
 ![header](./.github/resources/header.png)
 
+
 # Filament Spotlight
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pxlrbt/filament-spotlight.svg?include_prereleases)](https://packagist.org/packages/pxlrbt/filament-spotlight)
@@ -12,7 +13,8 @@ Quickly navigate your Filament Resources with Spotlight functionality.
 
 Currently supports all pages and resource pages without parameters.
 
-[![Watch the video](./.github/resources/preview.png)](./.github/resources/demo.mp4)
+https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-98ba-6164e5205509.mp4
+
 
 ## Installation
 
