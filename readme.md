@@ -1,5 +1,6 @@
 ![header](https://banners.beyondco.de/Filament%20Spotlight.png?theme=light&packageManager=composer+require&packageName=pxlrbt%2Ffilament-spotlight&pattern=plus&style=style_2&description=Quickly+navigate+your+Filament+Resources&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 
+
 # Filament Spotlight
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pxlrbt/filament-spotlight.svg?include_prereleases)](https://packagist.org/packages/pxlrbt/filament-spotlight)
@@ -12,7 +13,8 @@ Quickly navigate your Filament Resources with Spotlight functionality.
 
 Currently supports all pages and resource pages without parameters.
 
-[![Watch the video](./.github/resources/preview.png)](./.github/resources/demo.mp4)
+https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-98ba-6164e5205509.mp4
+
 
 ## Installation
 
