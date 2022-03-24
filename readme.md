@@ -29,10 +29,10 @@ There is no configuration needed. It just works.
 
 To open the Spotlight input bar you can use one of the following shortcuts:
 
-CTRL + K
-CMD + K
-CTRL + /
-CMD + /
+CTRL + K  
+CMD + K  
+CTRL + /  
+CMD + /  
 
 ## Contributing
 
