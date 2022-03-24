@@ -11,7 +11,7 @@
 
 Quickly navigate your Filament Resources with Spotlight functionality.
 
-Currently supports all pages and resource pages without parameters.
+Supports pages, resources and links from the user menu.
 
 https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-98ba-6164e5205509.mp4
 
@@ -25,7 +25,12 @@ composer require pxlrbt/filament-spotlight
 ```
 
 ## Usage
-There is no configuration needed. It just works.
+
+There is no configuration needed.
+
+> "its genius"
+
+  – Dan Harrin
 
 To open the Spotlight input bar you can use one of the following shortcuts:
 
