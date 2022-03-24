@@ -17,13 +17,13 @@ class RegisterUserMenu
         $items = Filament::getUserMenuItems();
 
         foreach ($items as $key => $item) {
-            $label = match($key) {
+            $label = match ($key) {
                 'account' => $item->getLabel() ?? __('Your Account'),
                 'logout' => $item->getLabel() ?? __('filament::layout.buttons.logout.label'),
                 default => $item->getLabel()
             };
 
-            $url = match($key) {
+            $url = match ($key) {
                 'logout' => $item->getUrl() ?? route('filament.auth.logout'),
                 default => $item->getUrl()
             };
