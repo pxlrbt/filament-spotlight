@@ -2,12 +2,14 @@
 
 namespace pxlrbt\FilamentSpotlight;
 
-use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Events\ServingFilament;
 use Filament\PluginServiceProvider;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Str;
-use Livewire\Livewire;
+use Illuminate\Support\Facades\Event;
+use pxlrbt\FilamentSpotlight\Actions\InjectSpotlightComponent;
+use pxlrbt\FilamentSpotlight\Actions\RegisterPages;
+use pxlrbt\FilamentSpotlight\Actions\RegisterResources;
+use pxlrbt\FilamentSpotlight\Actions\RegisterUserMenu;
 use Spatie\LaravelPackageTools\Package;
 
 class FilamentSpotlightServiceProvider extends PluginServiceProvider
@@ -23,43 +25,22 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
     public function configurePackage(Package $package): void
     {
         $package->name('filament-spotlight');
+    }
 
-        if (! $this->isFilament()) {
-            return;
-        }
+    public function bootingPackage()
+    {
+        Event::listen(ServingFilament::class, [$this, 'registerSpotlight']);
+    }
 
+    public function registerSpotlight(ServingFilament $e)
+    {
         Config::set('livewire-ui-spotlight.include_js', false);
         Config::set('livewire-ui-spotlight.commands', []);
 
-        Config::push('filament.middleware.base', FilamentSpotlightMiddleware::class);
-    }
+        (new RegisterPages)();
+        (new RegisterResources)();
+        (new RegisterUserMenu)();
 
-    public function packageBooted(): void
-    {
-        if (! $this->isFilament()) {
-            return;
-        }
-
-        /**
-         * @var Router $router
-         */
-        $router = $this->app['router'];
-        // Add DispatchServingFilamentEvent::class?
-        $router->pushMiddlewareToGroup(config('livewire.middleware_group'), DispatchServingFilamentEvent::class);
-        $router->pushMiddlewareToGroup(config('livewire.middleware_group'), FilamentSpotlightMiddleware::class);
-    }
-
-    protected function isFilament(): bool
-    {
-        $path = Livewire::isLivewireRequest()
-            ? request('fingerprint.path')
-            : request()->path();
-
-        $filamentPath = config('filament.path');
-
-        return Str::of($path)
-            ->prepend('/')
-            ->replace('//', '/')
-            ->startsWith($filamentPath);
+        (new InjectSpotlightComponent)();
     }
 }
