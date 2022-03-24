@@ -14,6 +14,8 @@ use Spatie\LaravelPackageTools\Package;
 
 class FilamentSpotlightServiceProvider extends PluginServiceProvider
 {
+    public static string $name = 'Filament Spotlight';
+
     protected array $styles = [
         'spotlight' => __DIR__ . '/../resources/dist/css/spotlight.css',
     ];
@@ -22,20 +24,15 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
         'spotlight' => __DIR__ . '/../resources/dist/js/spotlight.js',
     ];
 
-    public function configurePackage(Package $package): void
+    public function packageConfiguring(Package $package): void
     {
-        $package->name('filament-spotlight');
-
         Config::set('livewire-ui-spotlight.include_js', false);
         Config::set('livewire-ui-spotlight.commands', []);
-    }
 
-    public function bootingPackage()
-    {
         Event::listen(ServingFilament::class, [$this, 'registerSpotlight']);
     }
 
-    public function registerSpotlight(ServingFilament $e)
+    public function registerSpotlight(ServingFilament $event): void
     {
         (new RegisterPages())();
         (new RegisterResources())();
