@@ -16,10 +16,25 @@ class RegisterUserMenu
          */
         $items = Filament::getUserMenuItems();
 
-        foreach ($items as $item) {
+        foreach ($items as $key => $item) {
+            $label = match($key) {
+                'account' => $item->getLabel() ?? __('Your Account'),
+                'logout' => $item->getLabel() ?? __('filament::layout.buttons.logout.label'),
+                default => $item->getLabel()
+            };
+
+            $url = match($key) {
+                'logout' => $item->getUrl() ?? route('filament.auth.logout'),
+                default => $item->getUrl()
+            };
+
+            if (blank($label) || blank($url)) {
+                continue;
+            }
+
             $command = new DefaultCommand(
-                name: $item->getLabel(),
-                url: $item->getUrl(),
+                name: $label,
+                url: $url,
             );
 
             Spotlight::$commands[$command->getId()] = $command;
