@@ -2,7 +2,7 @@
 
 namespace pxlrbt\FilamentSpotlight\Actions;
 
-use Blade;
+use Illuminate\Support\Facades\Blade;
 
 class InjectSpotlightComponent
 {

@@ -25,6 +25,9 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
     public function configurePackage(Package $package): void
     {
         $package->name('filament-spotlight');
+
+        Config::set('livewire-ui-spotlight.include_js', false);
+        Config::set('livewire-ui-spotlight.commands', []);
     }
 
     public function bootingPackage()
@@ -34,13 +37,10 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
 
     public function registerSpotlight(ServingFilament $e)
     {
-        Config::set('livewire-ui-spotlight.include_js', false);
-        Config::set('livewire-ui-spotlight.commands', []);
+        (new RegisterPages())();
+        (new RegisterResources())();
+        (new RegisterUserMenu())();
 
-        (new RegisterPages)();
-        (new RegisterResources)();
-        (new RegisterUserMenu)();
-
-        (new InjectSpotlightComponent)();
+        (new InjectSpotlightComponent())();
     }
 }

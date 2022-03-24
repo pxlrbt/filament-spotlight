@@ -5,7 +5,7 @@ namespace pxlrbt\FilamentSpotlight\Actions;
 use Filament\Facades\Filament;
 use Filament\Navigation\UserMenuItem;
 use LivewireUI\Spotlight\Spotlight;
-use pxlrbt\FilamentSpotlight\FilamentSpotlightCommand;
+use pxlrbt\FilamentSpotlight\Commands\DefaultCommand;
 
 class RegisterUserMenu
 {
@@ -17,7 +17,7 @@ class RegisterUserMenu
         $items = Filament::getUserMenuItems();
 
         foreach ($items as $item) {
-            $command = new FilamentSpotlightCommand(
+            $command = new DefaultCommand(
                 name: $item->getLabel(),
                 url: $item->getUrl(),
             );

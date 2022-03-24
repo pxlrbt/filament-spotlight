@@ -1,11 +1,11 @@
 <?php
 
-namespace pxlrbt\FilamentSpotlight;
+namespace pxlrbt\FilamentSpotlight\Commands;
 
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 
-class FilamentSpotlightCommand extends SpotlightCommand
+class DefaultCommand extends SpotlightCommand
 {
     public function __construct(
         protected string $name,
