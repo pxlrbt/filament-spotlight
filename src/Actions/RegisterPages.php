@@ -4,7 +4,7 @@ namespace pxlrbt\FilamentSpotlight\Actions;
 
 use Filament\Facades\Filament;
 use LivewireUI\Spotlight\Spotlight;
-use pxlrbt\FilamentSpotlight\Commands\DefaultCommand;
+use pxlrbt\FilamentSpotlight\Commands\PageCommand;
 
 class RegisterPages
 {
@@ -13,9 +13,16 @@ class RegisterPages
         $pages = Filament::getPages();
 
         foreach ($pages as $page) {
-            $command = new DefaultCommand(
-                name: invade(new $page())->getTitle(),
-                url: $page::getUrl()
+            $name = \Livewire\invade(new $page())->getTitle();
+            $url = $page::getUrl();
+
+            if (blank($name) || blank($url)) {
+                continue;
+            }
+
+            $command = new PageCommand(
+                name: $name,
+                url: $url
             );
 
             Spotlight::$commands[$command->getId()] = $command;

@@ -5,7 +5,7 @@ namespace pxlrbt\FilamentSpotlight\Commands;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 
-class DefaultCommand extends SpotlightCommand
+class PageCommand extends SpotlightCommand
 {
     public function __construct(
         protected string $name,
