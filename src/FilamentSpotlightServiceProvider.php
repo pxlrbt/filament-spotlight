@@ -34,6 +34,10 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
 
     public function registerSpotlight(ServingFilament $event): void
     {
+        if (! auth()->check()) {
+            return;
+        }
+
         (new RegisterPages())();
         (new RegisterResources())();
         (new RegisterUserMenu())();
