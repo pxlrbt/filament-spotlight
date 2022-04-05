@@ -3,6 +3,7 @@
 namespace pxlrbt\FilamentSpotlight;
 
 use Filament\Events\ServingFilament;
+use Filament\Facades\Filament;
 use Filament\PluginServiceProvider;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
@@ -34,7 +35,7 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
 
     public function registerSpotlight(ServingFilament $event): void
     {
-        if (! auth()->check()) {
+        if (! Filament::auth()->check()) {
             return;
         }
 
