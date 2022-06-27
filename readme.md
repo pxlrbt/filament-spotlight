@@ -39,6 +39,16 @@ CMD + K
 CTRL + /  
 CMD + /  
 
+## Translation
+
+To translate or edit the default placeholder, you have to publish the translation file for *wire-element/spotlight*: 
+
+```php
+php artisan vendor:publish --tag=livewire-ui-spotlight-translations
+```
+
+
+
 ## Contributing
 
 If you want to contribute to this packages, you may want to test it in a real Filament project:
