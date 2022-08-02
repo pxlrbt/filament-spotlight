@@ -3,10 +3,11 @@
 namespace pxlrbt\FilamentSpotlight;
 
 use Filament\Events\ServingFilament;
+use Filament\Facades\Filament;
 use Filament\PluginServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
-use pxlrbt\FilamentSpotlight\Actions\InjectSpotlightComponent;
 use pxlrbt\FilamentSpotlight\Actions\RegisterPages;
 use pxlrbt\FilamentSpotlight\Actions\RegisterResources;
 use pxlrbt\FilamentSpotlight\Actions\RegisterUserMenu;
@@ -14,7 +15,7 @@ use Spatie\LaravelPackageTools\Package;
 
 class FilamentSpotlightServiceProvider extends PluginServiceProvider
 {
-    public static string $name = 'Filament Spotlight';
+    public static string $name = 'filament-spotlight';
 
     protected array $styles = [
         'spotlight' => __DIR__ . '/../resources/dist/css/spotlight.css',
@@ -42,6 +43,6 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
         (new RegisterResources())();
         (new RegisterUserMenu())();
 
-        (new InjectSpotlightComponent())();
+        Filament::registerRenderHook('scripts.end', fn () => Blade::render("@livewire('livewire-ui-spotlight')"));
     }
 }
