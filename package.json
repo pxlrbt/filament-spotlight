@@ -1,19 +1,16 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
+        "dev": "mix watch",
+        "build": "mix --production && npm run purge",
+        "purge": "filament-purge -i resources/dist/css/spotlight.css -o resources/dist/css/spotlight.css"
     },
     "devDependencies": {
         "autoprefixer": "^10.1.0",
         "laravel-mix": "^6.0.6",
         "postcss": "^8.2.1",
-        "tailwindcss": "^3.0.23"
+        "tailwindcss": "^3.0.23",
+        "@awcodes/filament-plugin-purge": "^1.0.1"
     },
     "dependencies": {
         "fuse.js": "^6.5.3"
