@@ -77,7 +77,7 @@ class ResourceCommand extends SpotlightCommand
         }
 
         return SpotlightCommandDependencies::collection()->add(
-            SpotlightCommandDependency::make('record')->setPlaceholder(__('Search for a :record', ['record' => $this->resource::getLabel()]))
+            SpotlightCommandDependency::make('record')->setPlaceholder(__('Search for a :record', ['record' => $this->resource::getModelLabel()]))
         );
     }
 
