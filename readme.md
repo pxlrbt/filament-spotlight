@@ -41,7 +41,7 @@ CMD + /
 
 ### Setup
 
-This plugin relies on the same properties and methods used for Filaments global search. For records showing up with the correct name in "Edit/View" you need to set `$recordTitleAttribute`. [Check the docs for more information](https://filamentphp.com/docs/2.x/admin/resources/global-search)
+This plugin relies on the same properties and methods used for Filament's global search. For records showing up with the correct name in "Edit/View" you need to set `$recordTitleAttribute`. [Check the docs for more information](https://filamentphp.com/docs/2.x/admin/resources/global-search)
 
 ## Translation
 
