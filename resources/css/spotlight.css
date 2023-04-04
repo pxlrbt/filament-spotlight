@@ -4,6 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-[x-cloak] {
+[x-cloak=""] {
     display: none !important;
 }
