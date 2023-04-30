@@ -2,6 +2,8 @@
 
 namespace pxlrbt\FilamentSpotlight\Actions;
 
+use Wallo\FilamentCompanies\FilamentCompanies;
+use Illuminate\Support\Facades\Auth;
 use Filament\Facades\Filament;
 use LivewireUI\Spotlight\Spotlight;
 use pxlrbt\FilamentSpotlight\Commands\PageCommand;
