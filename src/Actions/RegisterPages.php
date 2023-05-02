@@ -2,8 +2,6 @@
 
 namespace pxlrbt\FilamentSpotlight\Actions;
 
-use Wallo\FilamentCompanies\FilamentCompanies;
-use Illuminate\Support\Facades\Auth;
 use Filament\Facades\Filament;
 use LivewireUI\Spotlight\Spotlight;
 use pxlrbt\FilamentSpotlight\Commands\PageCommand;
@@ -16,8 +14,10 @@ class RegisterPages
 
         foreach ($pages as $page) {
             $name = \Livewire\invade(new $page())->getTitle();
-            if (str_contains('Wallo\FilamentCompanies\Pages\Companies\CompanySettings', $page) && FilamentCompanies::hasCompanyFeatures()) {
-                $url = $page::getUrl([Auth::user()?->currentCompany]);
+            if (str_contains('Wallo\FilamentCompanies\Pages\Companies\CompanySettings', $page)) {
+                if (@\Wallo\FilamentCompanies\FilamentCompanies::hasCompanyFeatures()) {
+                    $url = $page::getUrl([@\Illuminate\Support\Facades\Auth::user()?->currentCompany]);                    
+                }
             } else {
                 $url = $page::getUrl();
             }
