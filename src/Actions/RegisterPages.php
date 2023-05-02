@@ -14,7 +14,13 @@ class RegisterPages
 
         foreach ($pages as $page) {
             $name = \Livewire\invade(new $page())->getTitle();
-            $url = $page::getUrl();
+            if (str_contains('Wallo\FilamentCompanies\Pages\Companies\CompanySettings', $page)) {
+                if (@\Wallo\FilamentCompanies\FilamentCompanies::hasCompanyFeatures()) {
+                    $url = $page::getUrl([@\Illuminate\Support\Facades\Auth::user()?->currentCompany]);                    
+                }
+            } else {
+                $url = $page::getUrl();
+            }
 
             if (blank($name) || blank($url)) {
                 continue;
