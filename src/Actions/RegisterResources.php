@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace pxlrbt\FilamentSpotlight\Actions;
 
 use Filament\Facades\Filament;
@@ -8,7 +10,7 @@ use pxlrbt\FilamentSpotlight\Commands\ResourceCommand;
 
 class RegisterResources
 {
-    public function __invoke()
+    public function __invoke(): void
     {
         $resources = Filament::getResources();
 

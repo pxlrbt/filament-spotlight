@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace pxlrbt\FilamentSpotlight\Actions;
 
 use Filament\Facades\Filament;
-use Filament\Navigation\UserMenuItem;
 use LivewireUI\Spotlight\Spotlight;
+use Filament\Navigation\UserMenuItem;
 use pxlrbt\FilamentSpotlight\Commands\PageCommand;
 
 class RegisterUserMenu
 {
-    public function __invoke()
+    public function __invoke(): void
     {
         /**
          * @var array<UserMenuItem> $items
