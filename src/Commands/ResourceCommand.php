@@ -1,30 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace pxlrbt\FilamentSpotlight\Commands;
 
-use Filament\Resources\Pages\CreateRecord;
-use Filament\Resources\Pages\EditRecord;
-use Filament\Resources\Pages\Page;
-use Filament\Resources\Pages\ViewRecord;
 use Filament\Resources\Resource;
 use Illuminate\Database\Connection;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
-use LivewireUI\Spotlight\Spotlight;
-use LivewireUI\Spotlight\SpotlightCommand;
-use LivewireUI\Spotlight\SpotlightCommandDependencies;
-use LivewireUI\Spotlight\SpotlightCommandDependency;
-use LivewireUI\Spotlight\SpotlightSearchResult;
+use Illuminate\Support\{Arr, Collection, Str};
+use Filament\Resources\Pages\{CreateRecord, EditRecord, Page, ViewRecord};
+use Illuminate\Database\Eloquent\{Builder, Collection as EloquentCollection, Model};
+use LivewireUI\Spotlight\{Spotlight, SpotlightCommand, SpotlightCommandDependencies, SpotlightCommandDependency, SpotlightSearchResult};
 
 class ResourceCommand extends SpotlightCommand
 {
-    protected Resource $resource;
-
     protected Page $page;
+
+    protected Resource $resource;
 
     /**
      * @param  class-string<resource>  $resource
@@ -37,6 +28,22 @@ class ResourceCommand extends SpotlightCommand
     ) {
         $this->resource = new $resource();
         $this->page = new $page();
+    }
+
+    public function dependencies(): ?SpotlightCommandDependencies
+    {
+        if ( ! $this->hasDependencies()) {
+            return null;
+        }
+
+        return SpotlightCommandDependencies::collection()->add(
+            SpotlightCommandDependency::make('record')->setPlaceholder(__('Search for a :record', ['record' => $this->resource::getModelLabel()]))
+        );
+    }
+
+    public function execute(Spotlight $spotlight, $record = null): void
+    {
+        $spotlight->redirect($this->getUrl($record));
     }
 
     public function getId(): string
@@ -54,33 +61,6 @@ class ResourceCommand extends SpotlightCommand
         return $this->resource::getUrl($this->key, $recordKey);
     }
 
-    public function shouldBeShown(): bool
-    {
-        return match (true) {
-            $this->page instanceof CreateRecord => $this->resource::canCreate(),
-            default => $this->resource::canViewAny(),
-        };
-    }
-
-    protected function hasDependencies(): bool
-    {
-        return match (true) {
-            $this->page instanceof EditRecord, $this->page instanceof ViewRecord => true,
-            default => false,
-        };
-    }
-
-    public function dependencies(): ?SpotlightCommandDependencies
-    {
-        if (! $this->hasDependencies()) {
-            return null;
-        }
-
-        return SpotlightCommandDependencies::collection()->add(
-            SpotlightCommandDependency::make('record')->setPlaceholder(__('Search for a :record', ['record' => $this->resource::getModelLabel()]))
-        );
-    }
-
     public function searchRecord($query): EloquentCollection|Collection|array
     {
         $resource = $this->resource;
@@ -88,7 +68,7 @@ class ResourceCommand extends SpotlightCommand
         $query = $resource::getEloquentQuery();
 
         foreach (explode(' ', $searchQuery) as $searchQueryWord) {
-            $query->where(function (Builder $query) use ($searchQueryWord, $resource) {
+            $query->where(function (Builder $query) use ($searchQueryWord, $resource): void {
                 $isFirst = true;
 
                 foreach ($resource::getGloballySearchableAttributes() as $attributes) {
@@ -107,6 +87,14 @@ class ResourceCommand extends SpotlightCommand
                     ->map(fn ($value, $key) => $key . ': ' . $value)
                     ->join(' – ')
             ));
+    }
+
+    public function shouldBeShown(): bool
+    {
+        return match (true) {
+            $this->page instanceof CreateRecord => $this->resource::canCreate(),
+            default => $this->resource::canViewAny(),
+        };
     }
 
     protected static function applyGlobalSearchAttributeConstraint(Builder $query, array $searchAttributes, string $searchQuery, bool &$isFirst): Builder
@@ -143,8 +131,11 @@ class ResourceCommand extends SpotlightCommand
         return $query;
     }
 
-    public function execute(Spotlight $spotlight, $record = null): void
+    protected function hasDependencies(): bool
     {
-        $spotlight->redirect($this->getUrl($record));
+        return match (true) {
+            $this->page instanceof EditRecord, $this->page instanceof ViewRecord => true,
+            default => false,
+        };
     }
 }

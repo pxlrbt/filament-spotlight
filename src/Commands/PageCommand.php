@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace pxlrbt\FilamentSpotlight\Commands;
 
-use LivewireUI\Spotlight\Spotlight;
-use LivewireUI\Spotlight\SpotlightCommand;
+use LivewireUI\Spotlight\{Spotlight, SpotlightCommand};
 
 class PageCommand extends SpotlightCommand
 {
@@ -12,7 +13,12 @@ class PageCommand extends SpotlightCommand
         protected string $url,
         protected bool $shouldBeShown = true,
     ) {
-        //
+
+    }
+
+    public function execute(Spotlight $spotlight): void
+    {
+        $spotlight->redirect($this->url);
     }
 
     public function getId(): string
@@ -23,10 +29,5 @@ class PageCommand extends SpotlightCommand
     public function shouldBeShown(): bool
     {
         return $this->shouldBeShown;
-    }
-
-    public function execute(Spotlight $spotlight): void
-    {
-        $spotlight->redirect($this->url);
     }
 }

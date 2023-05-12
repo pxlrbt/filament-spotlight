@@ -1,28 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace pxlrbt\FilamentSpotlight;
 
-use Filament\Events\ServingFilament;
 use Filament\Facades\Filament;
 use Filament\PluginServiceProvider;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Event;
-use pxlrbt\FilamentSpotlight\Actions\RegisterPages;
-use pxlrbt\FilamentSpotlight\Actions\RegisterResources;
-use pxlrbt\FilamentSpotlight\Actions\RegisterUserMenu;
+use Filament\Events\ServingFilament;
 use Spatie\LaravelPackageTools\Package;
+use Illuminate\Support\Facades\{Blade, Config, Event};
+use pxlrbt\FilamentSpotlight\Actions\{RegisterPages, RegisterResources, RegisterUserMenu};
 
 class FilamentSpotlightServiceProvider extends PluginServiceProvider
 {
     public static string $name = 'filament-spotlight';
 
-    protected array $styles = [
-        'spotlight' => __DIR__ . '/../resources/dist/css/spotlight.css',
-    ];
-
     protected array $beforeCoreScripts = [
         'spotlight' => __DIR__ . '/../resources/dist/js/spotlight.js',
+    ];
+
+    protected array $styles = [
+        'spotlight' => __DIR__ . '/../resources/dist/css/spotlight.css',
     ];
 
     public function packageConfiguring(Package $package): void
@@ -35,7 +33,7 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
 
     public function registerSpotlight(ServingFilament $event): void
     {
-        if (! Filament::auth()->check()) {
+        if ( ! Filament::auth()->check()) {
             return;
         }
 
