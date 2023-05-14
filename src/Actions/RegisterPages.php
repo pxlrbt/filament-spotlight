@@ -2,9 +2,13 @@
 
 namespace pxlrbt\FilamentSpotlight\Actions;
 
+use Exception;
 use Filament\Facades\Filament;
 use LivewireUI\Spotlight\Spotlight;
 use pxlrbt\FilamentSpotlight\Commands\PageCommand;
+use Illuminate\Support\Facades\Auth;
+use Wallo\FilamentCompanies\FilamentCompanies;
+use Wallo\FilamentCompanies\Pages\Companies\CompanySettings;
 
 class RegisterPages
 {
@@ -14,7 +18,19 @@ class RegisterPages
 
         foreach ($pages as $page) {
             $name = \Livewire\invade(new $page())->getTitle();
-            $url = $page::getUrl();
+            if (str_contains(@CompanySettings::class, $page)) {
+                // filament-companies route params fixed
+                if (@FilamentCompanies::hasCompanyFeatures() && @Auth::user()?->currentCompany) {
+                    $url = $page::getUrl([@Auth::user()?->currentCompany]);
+                }
+            } else {
+                try {
+                    // Custom page error missing required parameter
+                    $url = $page::getUrl();
+                } catch (Exception $e) {
+                    // ignore
+                }
+            }
 
             if (blank($name) || blank($url)) {
                 continue;
