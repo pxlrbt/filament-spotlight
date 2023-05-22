@@ -22,6 +22,9 @@
         "wire-elements/spotlight": "^1.0",
         "spatie/laravel-package-tools": "^1.11"
     },
+    "require-dev": {
+        "laravel/pint": "^1.10"
+    },
     "autoload": {
         "psr-4": {
             "pxlrbt\\FilamentSpotlight\\": "src/"
@@ -34,14 +37,7 @@
             ]
         }
     },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.6"
-    },
     "scripts": {
-        "cs-fixer": "vendor/bin/php-cs-fixer fix --diff",
-        "style": [
-            "@cs-fixer",
-            "@phpstan"
-        ]
+        "pint": "vendor/bin/pint"
     }
 }
