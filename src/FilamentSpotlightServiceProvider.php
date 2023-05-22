@@ -18,11 +18,11 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
     public static string $name = 'filament-spotlight';
 
     protected array $styles = [
-        'spotlight' => __DIR__ . '/../resources/dist/css/spotlight.css',
+        'spotlight' => __DIR__.'/../resources/dist/css/spotlight.css',
     ];
 
     protected array $beforeCoreScripts = [
-        'spotlight' => __DIR__ . '/../resources/dist/js/spotlight.js',
+        'spotlight' => __DIR__.'/../resources/dist/js/spotlight.js',
     ];
 
     public function packageConfiguring(Package $package): void

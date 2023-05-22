@@ -41,12 +41,12 @@ class ResourceCommand extends SpotlightCommand
 
     public function getId(): string
     {
-        return md5($this->resource::class . $this->page::class);
+        return md5($this->resource::class.$this->page::class);
     }
 
     public function getName(): string
     {
-        return $this->resource::getBreadcrumb() . ' – ' . $this->page->getBreadcrumb();
+        return $this->resource::getBreadcrumb().' – '.$this->page->getBreadcrumb();
     }
 
     public function getUrl(null|int|string $recordKey): string
@@ -104,7 +104,7 @@ class ResourceCommand extends SpotlightCommand
                 $record->getKey(),
                 $resource::getGlobalSearchResultTitle($record),
                 collect($resource::getGlobalSearchResultDetails($record))
-                    ->map(fn ($value, $key) => $key . ': ' . $value)
+                    ->map(fn ($value, $key) => $key.': '.$value)
                     ->join(' – ')
             ));
     }
