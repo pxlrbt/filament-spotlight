@@ -30,8 +30,8 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
     {
         Config::set('livewire-ui-spotlight.include_js', false);
         Config::set('livewire-ui-spotlight.commands', []);
-        //
-        Event::listen(ServingFilament::class, fn ($event) => $this->registerSpotlight($event));
+
+        Event::listen(ServingFilament::class, [$this, 'registerSpotlight']);
     }
 
     public function registerSpotlight(ServingFilament $event): void
