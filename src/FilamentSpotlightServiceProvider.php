@@ -8,6 +8,7 @@ use Filament\PluginServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
+use Livewire\Livewire;
 use pxlrbt\FilamentSpotlight\Actions\RegisterPages;
 use pxlrbt\FilamentSpotlight\Actions\RegisterResources;
 use pxlrbt\FilamentSpotlight\Actions\RegisterUserMenu;
@@ -29,8 +30,8 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
     {
         Config::set('livewire-ui-spotlight.include_js', false);
         Config::set('livewire-ui-spotlight.commands', []);
-
-        Event::listen(ServingFilament::class, [$this, 'registerSpotlight']);
+        //
+        Event::listen(ServingFilament::class, fn ($event) => $this->registerSpotlight($event));
     }
 
     public function registerSpotlight(ServingFilament $event): void
@@ -42,6 +43,9 @@ class FilamentSpotlightServiceProvider extends PluginServiceProvider
         (new RegisterPages())();
         (new RegisterResources())();
         (new RegisterUserMenu())();
+
+        // Getting the title from pages needs to instantiate the Livewire components which will disable cache
+        Livewire::enableBackButtonCache();
 
         Filament::registerRenderHook('scripts.end', fn () => Blade::render("@livewire('livewire-ui-spotlight')"));
     }
