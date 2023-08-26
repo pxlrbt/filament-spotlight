@@ -18,9 +18,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "filament/filament": "^2.14.0",
-        "wire-elements/spotlight": "^1.0",
-        "spatie/laravel-package-tools": "^1.11"
+        "filament/filament": "^3.0.0-stable",
+        "wire-elements/spotlight": "^2.0"
     },
     "require-dev": {
         "laravel/pint": "^1.10"
@@ -33,7 +32,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "pxlrbt\\FilamentSpotlight\\FilamentSpotlightServiceProvider"
+                "pxlrbt\\FilamentSpotlight\\SpotlightServiceProvider"
             ]
         }
     },
