@@ -49,7 +49,7 @@ class ResourceCommand extends SpotlightCommand
         return collect([
             $this->resource::getNavigationGroup(),
             $this->resource::getBreadcrumb(),
-            $this->page->getBreadcrumb()
+            $this->page->getBreadcrumb(),
         ])
             ->filter()
             ->join(' / ');

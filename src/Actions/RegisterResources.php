@@ -20,7 +20,6 @@ class RegisterResources
                 /**
                  * @var PageRegistration $page
                  */
-
                 if (blank($key) || blank($page->getPage())) {
                     continue;
                 }
