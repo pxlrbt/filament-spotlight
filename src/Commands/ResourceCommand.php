@@ -46,12 +46,18 @@ class ResourceCommand extends SpotlightCommand
 
     public function getName(): string
     {
-        return $this->resource::getBreadcrumb().' – '.$this->page->getBreadcrumb();
+        return collect([
+            $this->resource::getNavigationGroup(),
+            $this->resource::getBreadcrumb(),
+            $this->page->getBreadcrumb()
+        ])
+            ->filter()
+            ->join(' / ');
     }
 
     public function getUrl(null|int|string $recordKey): string
     {
-        return $this->resource::getUrl($this->key, $recordKey);
+        return $this->resource::getUrl($this->key, $recordKey ? ['record' => $recordKey] : []);
     }
 
     public function shouldBeShown(): bool

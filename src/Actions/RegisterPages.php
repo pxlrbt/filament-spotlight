@@ -2,18 +2,29 @@
 
 namespace pxlrbt\FilamentSpotlight\Actions;
 
-use Filament\Facades\Filament;
+use Filament\Pages\Page;
+use Filament\Panel;
 use LivewireUI\Spotlight\Spotlight;
 use pxlrbt\FilamentSpotlight\Commands\PageCommand;
 
 class RegisterPages
 {
-    public function __invoke()
+    public static function boot(Panel $panel)
     {
-        $pages = Filament::getPages();
+        $pages = $panel->getPages();
 
-        foreach ($pages as $page) {
-            $name = \Livewire\invade(new $page())->getTitle();
+        foreach ($pages as $pageClass) {
+
+            /**
+             * @var Page $page
+             */
+            $page = new $pageClass();
+
+            $name = collect([
+                $page->getNavigationGroup(),
+                $page->getTitle(),
+            ])->filter()->join(' / ');
+
             $url = $page::getUrl();
 
             if (blank($name) || blank($url)) {
