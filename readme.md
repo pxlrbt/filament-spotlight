@@ -1,27 +1,48 @@
+<div class="filament-hidden">
+    
 ![header](./.github/resources/header.png)
 
+</div>
 
 # Filament Spotlight
 
+<div class="filament-hidden">
+    
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pxlrbt/filament-spotlight.svg?include_prereleases)](https://packagist.org/packages/pxlrbt/filament-spotlight)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pxlrbt/filament-spotlight/code-style.yml?branch=main&label=Code%20style&style=flat-square)
 [![Total Downloads](https://img.shields.io/packagist/dt/pxlrbt/filament-spotlight.svg)](https://packagist.org/packages/pxlrbt/filament-spotlight)
 
+</div>
 
 Quickly navigate your Filament Resources with Spotlight functionality.
 
 Supports pages, resources and links from the user menu.
 
+<div class="filament-hidden">
+    
 https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-98ba-6164e5205509.mp4
+
+</div>
 
 
 ## Installation via Composer
 
-**Requires PHP > 8.0 and Filament > 2.10.34**
+
+| Plugin Version | Filament Version | PHP Version |
+|----------------|-----------------|-------------|
+| 0.x            | 2.x   | \> 8.0      |
+| 1.x            | 3.x             | \> 8.1      |
+
 
 ```bash
 composer require pxlrbt/filament-spotlight
+```
+
+Publish the assets (Filament > 3)
+
+```bash
+php artisan filament:assets
 ```
 
 ## Usage
