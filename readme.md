@@ -26,7 +26,7 @@ https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-
 </div>
 
 
-## Installation via Composer
+## Installation
 
 
 | Plugin Version | Filament Version | PHP Version |
