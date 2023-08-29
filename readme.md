@@ -39,10 +39,25 @@ https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-
 composer require pxlrbt/filament-spotlight
 ```
 
+### Assets
+
 Publish the assets (Filament > 3)
 
 ```bash
 php artisan filament:assets
+```
+
+### Plugin registration
+
+To use this plugin register it in your panel configuration:
+
+```php
+use pxlrbt\FilamentSpotlight\SpotlightPlugin;
+
+$panel
+    ->plugins([
+        SpotlightPlugin::make(),
+    ]);
 ```
 
 ## Usage
