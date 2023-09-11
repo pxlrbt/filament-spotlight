@@ -3,7 +3,7 @@
     "scripts": {
         "dev": "mix watch",
         "build": "mix --production && npm run purge",
-        "purge": "filament-purge -i resources/dist/css/spotlight.css -o resources/dist/css/spotlight.css"
+        "purge": "filament-purge -i resources/dist/css/spotlight.css -o resources/dist/css/spotlight.css -v 3.x"
     },
     "devDependencies": {
         "autoprefixer": "^10.1.0",
