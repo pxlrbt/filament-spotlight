@@ -35,7 +35,7 @@ class RegisterUserMenu
         }
     }
 
-    protected function getName(string $key, MenuItem $item): string
+    protected function getName(string $key, MenuItem $item): ?string
     {
         return match ($key) {
             'account' => $item->getLabel() ?? __('Your Account'),
