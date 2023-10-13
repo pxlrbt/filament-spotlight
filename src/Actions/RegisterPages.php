@@ -20,6 +20,10 @@ class RegisterPages
              */
             $page = new $pageClass();
 
+            if ($page::shouldRegisterNavigation() === false) {
+                continue;
+            }
+
             $name = collect([
                 $page->getNavigationGroup(),
                 $page->getTitle(),
