@@ -1,7 +1,7 @@
 <div class="filament-hidden">
     
-![header](./.github/resources/header.png)
-
+![header](./.github/resources/pxlrbt-spotligh.png)
+pxlrbt-translate-action.png
 </div>
 
 # Filament Spotlight
