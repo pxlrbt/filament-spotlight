@@ -1,6 +1,6 @@
 <div class="filament-hidden">
     
-![header](./.github/resources/pxlrbt-spotligh.png)
+![header](./.github/resources/pxlrbt-spotlight.png)
 pxlrbt-translate-action.png
 </div>
 
