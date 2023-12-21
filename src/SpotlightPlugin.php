@@ -3,9 +3,11 @@
 namespace pxlrbt\FilamentSpotlight;
 
 use Filament\Contracts\Plugin;
+use Filament\Events\TenantSet;
 use Filament\Facades\Filament;
 use Filament\Panel;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Event;
 use pxlrbt\FilamentSpotlight\Actions\RegisterPages;
 use pxlrbt\FilamentSpotlight\Actions\RegisterResources;
 use pxlrbt\FilamentSpotlight\Actions\RegisterUserMenu;
@@ -28,7 +30,7 @@ class SpotlightPlugin implements Plugin
     {
         $panel->renderHook(
             'panels::scripts.after',
-            fn () => Blade::render("@livewire('livewire-ui-spotlight')")
+            fn() => Blade::render("@livewire('livewire-ui-spotlight')")
         );
     }
 
@@ -36,11 +38,23 @@ class SpotlightPlugin implements Plugin
     {
         Filament::serving(function () use ($panel) {
             config()->set('livewire-ui-spotlight.include_js', false);
+            if (Filament::hasTenancy()) {
+                Event::listen(TenantSet::class, function () use ($panel) {
+                    self::registerNavigation($panel);
+                });
+            } else {
+                self::registerNavigation($panel);
+            }
 
-            RegisterPages::boot($panel);
-            RegisterResources::boot($panel);
-            RegisterUserMenu::boot($panel);
+
         });
 
+    }
+
+    public static function registerNavigation($panel)
+    {
+        RegisterPages::boot($panel);
+        RegisterResources::boot($panel);
+        RegisterUserMenu::boot($panel);
     }
 }
