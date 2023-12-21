@@ -30,7 +30,7 @@ class SpotlightPlugin implements Plugin
     {
         $panel->renderHook(
             'panels::scripts.after',
-            fn() => Blade::render("@livewire('livewire-ui-spotlight')")
+            fn () => Blade::render("@livewire('livewire-ui-spotlight')")
         );
     }
 
@@ -45,7 +45,6 @@ class SpotlightPlugin implements Plugin
             } else {
                 self::registerNavigation($panel);
             }
-
 
         });
 
