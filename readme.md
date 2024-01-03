@@ -79,6 +79,19 @@ CMD + /
 
 This plugin relies on the same properties and methods used for Filament's global search. For records showing up with the correct name in "Edit/View" you need to set `$recordTitleAttribute`. [Check the docs for more information](https://filamentphp.com/docs/2.x/admin/resources/global-search)
 
+#### Excluding pages
+
+If you need to exclude a page from the spotlight results you may do so by adding a static `shouldRegisterSpotlight` method to the page and return false:
+
+```php
+public static function shouldRegisterSpotlight(): bool
+{
+    return false;
+}
+```
+
+This can be useful when you have pages that require URL parameters.
+
 ## Translation
 
 To translate or edit the default placeholder, you have to publish the translation file for *wire-element/spotlight*: 
