@@ -20,7 +20,7 @@ class RegisterPages
              */
             $page = new $pageClass();
 
-            if ($page::shouldRegisterNavigation() === false) {
+            if (method_exists($page, 'shouldRegisterSpotlight') && $page::shouldRegisterSpotlight() === false) {
                 continue;
             }
 
