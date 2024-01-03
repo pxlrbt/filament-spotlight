@@ -20,6 +20,10 @@ class RegisterPages
              */
             $page = new $pageClass();
 
+            if (method_exists($page, 'shouldRegisterSpotlight') && $page::shouldRegisterSpotlight() === false) {
+                continue;
+            }
+
             $name = collect([
                 $page->getNavigationGroup(),
                 $page->getTitle(),
