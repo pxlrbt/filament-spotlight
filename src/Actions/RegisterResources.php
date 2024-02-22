@@ -13,8 +13,6 @@ class RegisterResources
     {
         $resources = $panel->getResources();
 
-
-
         foreach ($resources as $resource) {
             if (method_exists($resource, 'shouldRegisterSpotlight') && $resource::shouldRegisterSpotlight() === false) {
                 continue;
