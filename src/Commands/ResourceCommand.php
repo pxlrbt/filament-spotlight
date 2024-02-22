@@ -4,6 +4,7 @@ namespace pxlrbt\FilamentSpotlight\Commands;
 
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ManageRelatedRecords;
 use Filament\Resources\Pages\Page;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Resources\Resource;
@@ -49,7 +50,7 @@ class ResourceCommand extends SpotlightCommand
         return collect([
             $this->resource::getNavigationGroup(),
             $this->resource::getBreadcrumb(),
-            $this->page->getBreadcrumb(),
+            $this->page::getNavigationLabel(),
         ])
             ->filter()
             ->join(' / ');
@@ -71,7 +72,9 @@ class ResourceCommand extends SpotlightCommand
     protected function hasDependencies(): bool
     {
         return match (true) {
-            $this->page instanceof EditRecord, $this->page instanceof ViewRecord => true,
+            $this->page instanceof EditRecord => true,
+            $this->page instanceof ViewRecord => true,
+            $this->page instanceof ManageRelatedRecords => true,
             default => false,
         };
     }
