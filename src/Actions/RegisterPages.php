@@ -18,7 +18,7 @@ class RegisterPages
             /**
              * @var Page $page
              */
-            $page = new $pageClass();
+            $page = new $pageClass;
 
             if (method_exists($page, 'shouldRegisterSpotlight') && $page::shouldRegisterSpotlight() === false) {
                 continue;
