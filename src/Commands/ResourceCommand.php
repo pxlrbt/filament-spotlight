@@ -110,7 +110,7 @@ class ResourceCommand extends SpotlightCommand
             ->limit(50)
             ->get()
             ->map(fn (Model $record) => new SpotlightSearchResult(
-                $record->getKey(),
+                $record->getRouteKey(),
                 $resource::getGlobalSearchResultTitle($record),
                 collect($resource::getGlobalSearchResultDetails($record))
                     ->map(fn ($value, $key) => $key.': '.$value)
