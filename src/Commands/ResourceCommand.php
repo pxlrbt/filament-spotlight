@@ -14,12 +14,12 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 use LivewireUI\Spotlight\SpotlightCommandDependencies;
 use LivewireUI\Spotlight\SpotlightCommandDependency;
 use LivewireUI\Spotlight\SpotlightSearchResult;
+
 use function Filament\Support\generate_search_column_expression;
 
 class ResourceCommand extends SpotlightCommand
@@ -37,8 +37,8 @@ class ResourceCommand extends SpotlightCommand
         string $page,
         protected string $key,
     ) {
-        $this->resource = new $resource();
-        $this->page = new $page();
+        $this->resource = new $resource;
+        $this->page = new $page;
     }
 
     public function getId(): string
@@ -97,7 +97,6 @@ class ResourceCommand extends SpotlightCommand
         $searchQuery = $query;
         $query = $resource::getEloquentQuery();
 
-
         foreach (explode(' ', $searchQuery) as $searchQueryWord) {
             $query->where(function (Builder $query) use ($searchQueryWord, $resource) {
                 $isFirst = true;
@@ -127,7 +126,7 @@ class ResourceCommand extends SpotlightCommand
         /** @var Connection $databaseConnection */
         $databaseConnection = $query->getConnection();
 
-        if ($isForcedCaseInsensitive){
+        if ($isForcedCaseInsensitive) {
             $searchQuery = strtolower($searchQuery);
         }
 
