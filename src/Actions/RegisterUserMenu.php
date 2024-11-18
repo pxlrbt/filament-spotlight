@@ -44,7 +44,7 @@ class RegisterUserMenu
         };
     }
 
-    protected function getUrl(string $key, MenuItem $item): string
+    protected function getUrl(string $key, MenuItem $item): ?string
     {
         return match ($key) {
             'logout' => $item->getUrl() ?? Filament::getLogoutUrl(),
