@@ -11,6 +11,8 @@ class SpotlightServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'filament-spotlight');
+
         config()->set('livewire-ui-spotlight.commands', []);
 
         FilamentAsset::register([

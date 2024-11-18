@@ -38,6 +38,7 @@ class SpotlightPlugin implements Plugin
     {
         Filament::serving(function () use ($panel) {
             config()->set('livewire-ui-spotlight.include_js', false);
+
             if (Filament::hasTenancy()) {
                 Event::listen(TenantSet::class, function () use ($panel) {
                     self::registerNavigation($panel);
