@@ -38,13 +38,13 @@ class RegisterUserMenu
     protected function getName(string $key, MenuItem $item): ?string
     {
         return match ($key) {
-            'account' => $item->getLabel() ?? __('Your Account'),
-            'logout' => $item->getLabel() ?? __('filament::layout.buttons.logout.label'),
+            'account' => $item->getLabel() ?? __('filament-spotlight::spotlight.account'),
+            'logout' => $item->getLabel() ?? __('filament-panels::layout.actions.logout.label'),
             default => $item->getLabel()
         };
     }
 
-    protected function getUrl(string $key, MenuItem $item): string
+    protected function getUrl(string $key, MenuItem $item): ?string
     {
         return match ($key) {
             'logout' => $item->getUrl() ?? Filament::getLogoutUrl(),

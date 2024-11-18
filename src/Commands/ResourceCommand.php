@@ -87,7 +87,9 @@ class ResourceCommand extends SpotlightCommand
         }
 
         return SpotlightCommandDependencies::collection()->add(
-            SpotlightCommandDependency::make('record')->setPlaceholder(__('Search for a :record', ['record' => $this->resource::getModelLabel()]))
+            SpotlightCommandDependency::make('record')->setPlaceholder(
+                __('filament-spotlight::spotlight.placeholder', ['record' => $this->resource::getModelLabel()])
+            )
         );
     }
 
@@ -111,7 +113,7 @@ class ResourceCommand extends SpotlightCommand
             ->limit(50)
             ->get()
             ->map(fn (Model $record) => new SpotlightSearchResult(
-                $record->getKey(),
+                $record->getRouteKey(),
                 $resource::getGlobalSearchResultTitle($record),
                 collect($resource::getGlobalSearchResultDetails($record))
                     ->map(fn ($value, $key) => $key.': '.$value)
