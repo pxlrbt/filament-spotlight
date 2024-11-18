@@ -14,12 +14,13 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 use LivewireUI\Spotlight\SpotlightCommandDependencies;
 use LivewireUI\Spotlight\SpotlightCommandDependency;
 use LivewireUI\Spotlight\SpotlightSearchResult;
+
+use function Filament\Support\generate_search_column_expression;
 
 class ResourceCommand extends SpotlightCommand
 {
@@ -103,7 +104,7 @@ class ResourceCommand extends SpotlightCommand
                 $isFirst = true;
 
                 foreach ($resource::getGloballySearchableAttributes() as $attributes) {
-                    static::applyGlobalSearchAttributeConstraint($query, Arr::wrap($attributes), $searchQueryWord, $isFirst);
+                    static::applyGlobalSearchAttributeConstraint($query, Arr::wrap($attributes), $searchQueryWord, $isFirst, $resource);
                 }
             });
         }
@@ -120,30 +121,33 @@ class ResourceCommand extends SpotlightCommand
             ));
     }
 
-    protected static function applyGlobalSearchAttributeConstraint(Builder $query, array $searchAttributes, string $searchQuery, bool &$isFirst): Builder
+    protected static function applyGlobalSearchAttributeConstraint(Builder $query, array $searchAttributes, string $searchQuery, bool &$isFirst, $resource): Builder
     {
+        $isForcedCaseInsensitive = $resource::isGlobalSearchForcedCaseInsensitive();
+
         /** @var Connection $databaseConnection */
         $databaseConnection = $query->getConnection();
 
-        $searchOperator = match ($databaseConnection->getDriverName()) {
-            'pgsql' => 'ilike',
-            default => 'like',
-        };
+        if ($isForcedCaseInsensitive) {
+            $searchQuery = strtolower($searchQuery);
+        }
 
         foreach ($searchAttributes as $searchAttribute) {
             $whereClause = $isFirst ? 'where' : 'orWhere';
 
             $query->when(
-                Str::of($searchAttribute)->contains('.'),
-                fn ($query) => $query->{"{$whereClause}Relation"}(
-                    (string) Str::of($searchAttribute)->beforeLast('.'),
-                    (string) Str::of($searchAttribute)->afterLast('.'),
-                    $searchOperator,
-                    "%{$searchQuery}%",
-                ),
-                fn ($query) => $query->{$whereClause}(
-                    $searchAttribute,
-                    $searchOperator,
+                str($searchAttribute)->contains('.'),
+                function (Builder $query) use ($databaseConnection, $isForcedCaseInsensitive, $searchAttribute, $searchQuery, $whereClause): Builder {
+                    return $query->{"{$whereClause}Relation"}(
+                        (string) str($searchAttribute)->beforeLast('.'),
+                        generate_search_column_expression((string) str($searchAttribute)->afterLast('.'), $isForcedCaseInsensitive, $databaseConnection),
+                        'like',
+                        "%{$searchQuery}%",
+                    );
+                },
+                fn (Builder $query) => $query->{$whereClause}(
+                    generate_search_column_expression($searchAttribute, $isForcedCaseInsensitive, $databaseConnection),
+                    'like',
                     "%{$searchQuery}%",
                 ),
             );
