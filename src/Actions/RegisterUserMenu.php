@@ -12,7 +12,7 @@ class RegisterUserMenu
 {
     public static function boot(Panel $panel)
     {
-        $self = new static();
+        $self = new static;
         /**
          * @var array<MenuItem> $items
          */
