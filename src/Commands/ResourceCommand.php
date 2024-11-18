@@ -103,7 +103,6 @@ class ResourceCommand extends SpotlightCommand
                 $isFirst = true;
 
                 foreach ($resource::getGloballySearchableAttributes() as $attributes) {
-                    //$resource::applyGlobalSearchAttributeConstraint($query, $searchQueryWord,Arr::wrap($attributes), $isFirst);
                     static::applyGlobalSearchAttributeConstraint($query, Arr::wrap($attributes), $searchQueryWord, $isFirst, $resource);
                 }
             });
@@ -123,15 +122,15 @@ class ResourceCommand extends SpotlightCommand
 
     protected static function applyGlobalSearchAttributeConstraint(Builder $query, array $searchAttributes, string $searchQuery, bool &$isFirst, $resource): Builder
     {
-        $model = $query->getModel();
-
         $isForcedCaseInsensitive = $resource::isGlobalSearchForcedCaseInsensitive();
 
         /** @var Connection $databaseConnection */
         $databaseConnection = $query->getConnection();
+
         if ($isForcedCaseInsensitive){
-            $searchQuery = strtolower($searchQuery); 
+            $searchQuery = strtolower($searchQuery);
         }
+
         foreach ($searchAttributes as $searchAttribute) {
             $whereClause = $isFirst ? 'where' : 'orWhere';
 
