@@ -20,6 +20,10 @@ class RegisterPages
              */
             $page = new $pageClass;
 
+            if (self::hasParameters($page::getSlug())) {
+                continue;
+            }
+
             if (method_exists($page, 'shouldRegisterSpotlight') && $page::shouldRegisterSpotlight() === false) {
                 continue;
             }
@@ -42,5 +46,10 @@ class RegisterPages
 
             Spotlight::$commands[$command->getId()] = $command;
         }
+    }
+
+    private static function hasParameters(string $slug): bool
+    {
+        return preg_match('/{[^}]+}/', $slug) === 1;
     }
 }
