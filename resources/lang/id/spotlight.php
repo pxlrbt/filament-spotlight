@@ -1,6 +1,6 @@
 <?php
 
 return [
-  'placeholder' => 'Cari :record',
-  'account' => 'Akun Anda',
+    'placeholder' => 'Cari :record',
+    'account' => 'Akun Anda',
 ];
