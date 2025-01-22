@@ -97,7 +97,7 @@ class ResourceCommand extends SpotlightCommand
     {
         $resource = $this->resource;
         $searchQuery = $query;
-        $query = $resource::getEloquentQuery();
+        $query = $resource::getGlobalSearchEloquentQuery();
 
         foreach (explode(' ', $searchQuery) as $searchQueryWord) {
             $query->where(function (Builder $query) use ($searchQueryWord, $resource) {
