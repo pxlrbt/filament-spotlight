@@ -1,5 +1,5 @@
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@source '../../vendor/wire-elements/**/*.blade.php';
 
 [x-cloak=""] {
     display: none !important;

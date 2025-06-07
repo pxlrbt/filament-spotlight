@@ -18,7 +18,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "filament/filament": "^3.0.0-stable",
+        "filament/filament": "^3.0|^4.0",
         "wire-elements/spotlight": "^2.0"
     },
     "require-dev": {
