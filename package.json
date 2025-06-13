@@ -5,11 +5,7 @@
         "build": "mix --production"
     },
     "devDependencies": {
-        "autoprefixer": "^10.1.0",
-        "laravel-mix": "^6.0.6",
-        "postcss": "^8.2.1",
-        "@tailwindcss/postcss": "^4.1.8",
-        "tailwindcss": "^4"
+        "laravel-mix": "^6.0.6"
     },
     "dependencies": {
         "fuse.js": "^6.5.3"
