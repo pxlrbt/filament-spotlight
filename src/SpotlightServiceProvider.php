@@ -16,7 +16,6 @@ class SpotlightServiceProvider extends ServiceProvider
         config()->set('livewire-ui-spotlight.commands', []);
 
         FilamentAsset::register([
-            Css::make('spotlight-css', __DIR__.'/../resources/dist/css/spotlight.css'),
             Js::make('spotlight-js', __DIR__.'/../resources/dist/js/spotlight.js'),
         ], package: 'pxlrbt/filament-spotlight');
     }
