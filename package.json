@@ -2,15 +2,14 @@
     "private": true,
     "scripts": {
         "dev": "mix watch",
-        "build": "mix --production && npm run purge",
-        "purge": "filament-purge -i resources/dist/css/spotlight.css -o resources/dist/css/spotlight.css -v 3.x"
+        "build": "mix --production"
     },
     "devDependencies": {
         "autoprefixer": "^10.1.0",
         "laravel-mix": "^6.0.6",
         "postcss": "^8.2.1",
-        "tailwindcss": "^3.0.23",
-        "@awcodes/filament-plugin-purge": "^1.0.1"
+        "@tailwindcss/postcss": "^4.1.8",
+        "tailwindcss": "^4"
     },
     "dependencies": {
         "fuse.js": "^6.5.3"

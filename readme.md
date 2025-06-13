@@ -29,21 +29,26 @@ https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-
 
 
 | Plugin Version | Filament Version | PHP Version |
-|----------------|-----------------|-------------|
-| 0.x            | 2.x   | \> 8.0      |
-| 1.x            | 3.x             | \> 8.1      |
+|----------------|------------------|-------------|
+| 0.x            | 2.x              | \> 8.0      |
+| 1.x            | 3.x              | \> 8.1      |
+| 2.x            | 4.x              | \> 8.1      |
 
 
 ```bash
 composer require pxlrbt/filament-spotlight
 ```
 
-### Assets
+### Upgrade guide for Filament v4
 
-Publish the assets (Filament > 3)
+From v2 onwards you will need a [Custom Theme](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) to include the Tailwind classes for the Spotlight component. See note below. 
 
-```bash
-php artisan filament:assets
+### Styles
+
+To include the Tailwind classes that are used in the Spotlight component, you need to create a [Custom Theme](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) and include the following line:
+
+```css
+@source '../../../../vendor/wire-elements/**/*.blade.php';
 ```
 
 ### Plugin registration

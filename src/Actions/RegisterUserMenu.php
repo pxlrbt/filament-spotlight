@@ -2,20 +2,18 @@
 
 namespace pxlrbt\FilamentSpotlight\Actions;
 
+use Filament\Actions\Action;
 use Filament\Facades\Filament;
-use Filament\Navigation\MenuItem;
 use Filament\Panel;
 use LivewireUI\Spotlight\Spotlight;
 use pxlrbt\FilamentSpotlight\Commands\PageCommand;
 
 class RegisterUserMenu
 {
-    public static function boot(Panel $panel)
+    public static function boot(Panel $panel): void
     {
         $self = new static;
-        /**
-         * @var array<MenuItem> $items
-         */
+
         $items = $panel->getUserMenuItems();
 
         foreach ($items as $key => $item) {
@@ -35,7 +33,7 @@ class RegisterUserMenu
         }
     }
 
-    protected function getName(string $key, MenuItem $item): ?string
+    protected function getName(string $key, Action $item): ?string
     {
         return match ($key) {
             'account' => $item->getLabel() ?? __('filament-spotlight::spotlight.account'),
@@ -44,7 +42,7 @@ class RegisterUserMenu
         };
     }
 
-    protected function getUrl(string $key, MenuItem $item): ?string
+    protected function getUrl(string $key, Action $item): ?string
     {
         return match ($key) {
             'logout' => $item->getUrl() ?? Filament::getLogoutUrl(),

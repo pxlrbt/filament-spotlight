@@ -48,7 +48,6 @@ class SpotlightPlugin implements Plugin
             }
 
         });
-
     }
 
     public static function registerNavigation($panel)
