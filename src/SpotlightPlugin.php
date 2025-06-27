@@ -37,7 +37,7 @@ class SpotlightPlugin implements Plugin
     public function boot(Panel $panel): void
     {
         Filament::serving(function () use ($panel) {
-            if(!Filament::auth()->check()) {
+            if (! Filament::auth()->check()) {
                 return;
             }
             config()->set('livewire-ui-spotlight.include_js', false);
