@@ -3,6 +3,7 @@
 namespace pxlrbt\FilamentSpotlight\Actions;
 
 use Filament\Actions\Action;
+use Filament\Navigation\MenuItem;
 use Filament\Facades\Filament;
 use Filament\Panel;
 use LivewireUI\Spotlight\Spotlight;
@@ -33,7 +34,7 @@ class RegisterUserMenu
         }
     }
 
-    protected function getName(string $key, Action $item): ?string
+    protected function getName(string $key, Action|MenuItem $item): ?string
     {
         return match ($key) {
             'account' => $item->getLabel() ?? __('filament-spotlight::spotlight.account'),
@@ -42,7 +43,7 @@ class RegisterUserMenu
         };
     }
 
-    protected function getUrl(string $key, Action $item): ?string
+    protected function getUrl(string $key, Action|MenuItem $item): ?string
     {
         return match ($key) {
             'logout' => $item->getUrl() ?? Filament::getLogoutUrl(),
