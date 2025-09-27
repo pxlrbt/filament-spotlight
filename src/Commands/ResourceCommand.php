@@ -49,7 +49,7 @@ class ResourceCommand extends SpotlightCommand
     public function getName(): string
     {
         return collect([
-            $this->resource::getNavigationGroup(),
+            ($group = $this->resource::getNavigationGroup()) instanceof HasLabel ? $group->getLabel() : $group,
             $this->resource::getBreadcrumb(),
             $this->page::getNavigationLabel(),
         ])
