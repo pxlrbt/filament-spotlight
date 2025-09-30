@@ -3,8 +3,8 @@
 namespace pxlrbt\FilamentSpotlight\Actions;
 
 use Filament\Actions\Action;
-use Filament\Navigation\MenuItem;
 use Filament\Facades\Filament;
+use Filament\Navigation\MenuItem;
 use Filament\Panel;
 use LivewireUI\Spotlight\Spotlight;
 use pxlrbt\FilamentSpotlight\Commands\PageCommand;
