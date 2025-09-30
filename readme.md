@@ -1,12 +1,12 @@
 <div class="filament-hidden">
-    
+
 ![header](./.github/resources/pxlrbt-spotlight.png)
 </div>
 
 # Filament Spotlight
 
 <div class="filament-hidden">
-    
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pxlrbt/filament-spotlight.svg?include_prereleases)](https://packagist.org/packages/pxlrbt/filament-spotlight)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pxlrbt/filament-spotlight/code-style.yml?branch=main&label=Code%20style&style=flat-square)
@@ -19,10 +19,14 @@ Quickly navigate your Filament Resources with Spotlight functionality.
 Supports pages, resources and links from the user menu.
 
 <div class="filament-hidden">
-    
+
 https://user-images.githubusercontent.com/22632550/159757479-ca9c3f46-7638-4889-98ba-6164e5205509.mp4
 
 </div>
+
+## Go Pro!
+
+**Spotlight Pro** is built from the ground up and features a beautiful design that integrates seamlessly with Filament in both light and dark modes. It offers the same easy registration as the default version, along with enhanced control. Learn more at: https://filament.pxlrbt.de/spotlight-pro/
 
 
 ## Installation
@@ -41,7 +45,7 @@ composer require pxlrbt/filament-spotlight
 
 ### Upgrade guide for Filament v4
 
-From v2 onwards you will need a [Custom Theme](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) to include the Tailwind classes for the Spotlight component. See note below. 
+From v2 onwards you will need a [Custom Theme](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) to include the Tailwind classes for the Spotlight component. See note below.
 
 ### Styles
 
@@ -74,10 +78,10 @@ There is no configuration needed.
 
 To open the Spotlight input bar you can use one of the following shortcuts:
 
-CTRL + K  
-CMD + K  
-CTRL + /  
-CMD + /  
+CTRL + K
+CMD + K
+CTRL + /
+CMD + /
 
 ### Setup
 
@@ -98,7 +102,7 @@ This can be useful when you have pages that require URL parameters.
 
 ## Translation
 
-To translate or edit the default placeholder, you have to publish the translation file for *wire-element/spotlight*: 
+To translate or edit the default placeholder, you have to publish the translation file for *wire-element/spotlight*:
 
 ```php
 php artisan vendor:publish --tag=livewire-ui-spotlight-translations
