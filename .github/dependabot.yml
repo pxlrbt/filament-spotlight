@@ -1,0 +1,38 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ['*']
+    commit-message:
+      prefix: 'ci'
+
+  # Dev tooling only. The `require` constraints are deliberately wide so
+  # consumers can resolve freely — bumping them is a manual support-window
+  # decision, not a dependency update.
+  - package-ecosystem: composer
+    directory: /
+    schedule:
+      interval: monthly
+    allow:
+      - dependency-type: development
+    versioning-strategy: increase
+    groups:
+      dev-tooling:
+        patterns: ['*']
+    commit-message:
+      prefix: 'chore'
+
+  # Docs toolchain only — nothing here ships to consumers.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      docs:
+        patterns: ['*']
+    commit-message:
+      prefix: 'chore'
