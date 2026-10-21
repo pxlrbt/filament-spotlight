@@ -5,9 +5,9 @@
         "build": "mix --production"
     },
     "devDependencies": {
-        "laravel-mix": "^6.0.6"
+        "laravel-mix": "^6.0.49"
     },
     "dependencies": {
-        "fuse.js": "^6.5.3"
+        "fuse.js": "^7.5.0"
     }
 }
