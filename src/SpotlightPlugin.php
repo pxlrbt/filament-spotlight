@@ -6,6 +6,8 @@ use Filament\Contracts\Plugin;
 use Filament\Events\TenantSet;
 use Filament\Facades\Filament;
 use Filament\Panel;
+use Filament\Support\Assets\Js;
+use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use pxlrbt\FilamentSpotlight\Actions\RegisterPages;
@@ -28,9 +30,14 @@ class SpotlightPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
+        // The script is loaded on request (see the service provider), so it is printed here, with the component,
+        // only on the panels that use the plugin.
         $panel->renderHook(
             'panels::scripts.after',
-            fn () => Blade::render("@livewire('livewire-ui-spotlight')")
+            fn () => collect(FilamentAsset::getScripts([self::$name]))
+                ->map(fn (Js $script) => $script->getHtml()->toHtml())
+                ->implode('')
+                .Blade::render("@livewire('livewire-ui-spotlight')")
         );
     }
 
