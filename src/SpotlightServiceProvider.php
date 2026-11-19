@@ -14,8 +14,10 @@ class SpotlightServiceProvider extends ServiceProvider
 
         config()->set('livewire-ui-spotlight.commands', []);
 
+        // Loaded on request: Filament prints every other registered asset on every page of every panel, including
+        // the panels that do not use the plugin. The plugin prints it on its own panels, with the component.
         FilamentAsset::register([
-            Js::make('spotlight-js', __DIR__.'/../resources/dist/js/spotlight.js'),
+            Js::make('spotlight-js', __DIR__.'/../resources/dist/js/spotlight.js')->loadedOnRequest(),
         ], package: 'pxlrbt/filament-spotlight');
     }
 }
